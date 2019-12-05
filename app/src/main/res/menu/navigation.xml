@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/movieListFragment"
+        android:icon="@drawable/ic_movie_filter_black_24dp"
+        android:title="Popular"/>
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="Favorite"/>
+    <item
+        android:id="@+id/cinemaFragment"
+        android:icon="@drawable/ic_video_label_black_24dp"
+        android:title="Cinema"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_account_box_black_24dp"
+        android:title="Profile"/>
+</menu>
