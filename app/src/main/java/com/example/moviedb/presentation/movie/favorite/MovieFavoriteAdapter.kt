@@ -1,6 +1,5 @@
 package com.example.moviedb.presentation.movie.favorite
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.example.moviedb.data.models.MovieData
 import com.example.moviedb.utils.AppConstants
 
 
-class MovieFavoriteAdapter(private val itemClickListener: ItemClickListener): RecyclerView.Adapter<BaseViewHolder>(){
+class MovieFavoriteAdapter(private val itemClickListener: ItemClickListener) : RecyclerView.Adapter<BaseViewHolder>(){
 
     private val VIEW_TYPE_LOADING = 0
     private val VIEW_TYPE_NORMAL = 1
@@ -85,7 +84,7 @@ class MovieFavoriteAdapter(private val itemClickListener: ItemClickListener): Re
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         if (holder is MovieViewHolder) {
-            val movie = movieList[movieList.size-1-position]
+            val movie = movieList[movieList.size - 1 - position]
             holder.bind(movie)
             holder.setItemClick(movie)
         }
@@ -104,7 +103,7 @@ class MovieFavoriteAdapter(private val itemClickListener: ItemClickListener): Re
 
         fun bind(movie: MovieData) {
             tvName.text = movie.title
-            movie.releaseDate.let{ date ->
+            movie.releaseDate.let { date ->
                 tvDate.text = date
             }
             val imageUrl = "${AppConstants.POSTER_BASE_URL}${movie.posterPath}"
@@ -115,7 +114,7 @@ class MovieFavoriteAdapter(private val itemClickListener: ItemClickListener): Re
 
         }
         fun setItemClick(item: MovieData) {
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 itemClickListener.onItemClick(item)
             }
         }

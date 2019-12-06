@@ -10,7 +10,7 @@ import com.example.moviedb.data.room.CinemaRoomDatabase
 import com.example.moviedb.domain.repository.CinemaRepository
 import kotlinx.coroutines.launch
 
-class CinemaDetailsViewModel(application: Application): AndroidViewModel(application) {
+class CinemaDetailsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: CinemaRepository
 

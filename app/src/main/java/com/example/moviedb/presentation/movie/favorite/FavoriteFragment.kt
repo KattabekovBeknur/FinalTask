@@ -41,7 +41,7 @@ class FavoriteFragment : BaseFragment() {
         override fun onItemClick(item: MovieData) {
             Log.d("movieDb: movieID", item.id.toString())
             val bundle = Bundle()
-            bundle.putInt(AppConstants.MOVIE_ID, item.id!!)
+            item.id?.let{bundle.putInt(AppConstants.MOVIE_ID, it)}
             navController.navigate(
                 R.id.action_favoriteFragment_to_detail_favoriteFragment,
                 bundle
@@ -60,8 +60,8 @@ class FavoriteFragment : BaseFragment() {
     }
 
     private fun initId() {
-        accountId = AppPreferences.getAccountId(activity?.applicationContext!!)
-        sessionId = AppPreferences.getSessionId(activity?.applicationContext!!)
+        accountId = activity?.application?.let{app->AppPreferences.getAccountId(app)}
+        sessionId = activity?.application?.let{app->AppPreferences.getSessionId(app)}
     }
 
     override fun onCreateView(

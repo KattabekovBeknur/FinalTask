@@ -10,7 +10,7 @@ import com.example.moviedb.extensions.launchSafe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MovieListViewModel(private val movieRepository: MovieRepository): BaseViewModel() {
+class MovieListViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
 
     private val _liveData = MutableLiveData<State>()
     val liveData: LiveData<State>

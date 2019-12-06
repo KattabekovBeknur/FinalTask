@@ -16,7 +16,7 @@ import com.example.moviedb.utils.AppConstants
 class CinemaListAdapter (
     private val context: Context?,
     private val itemClickListener: ItemClickListener
-): RecyclerView.Adapter<CinemaListAdapter.CinemaViewHolder>() {
+) : RecyclerView.Adapter<CinemaListAdapter.CinemaViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var cinemas = emptyList<Cinema>()

@@ -13,11 +13,10 @@ import com.bumptech.glide.Glide
 import com.example.moviedb.R
 import com.example.moviedb.base.BaseFragment
 import com.example.moviedb.utils.AppConstants
-import org.koin.android.ext.android.inject
 
 class CinemaDetailsFragment : BaseFragment() {
 
-    private val viewModel: CinemaDetailsViewModel by inject()
+    private lateinit var viewModel: CinemaDetailsViewModel
     private lateinit var ivBackdrop: ImageView
     private lateinit var tvName: TextView
     private lateinit var tvAddress: TextView
@@ -36,6 +35,7 @@ class CinemaDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(CinemaDetailsViewModel::class.java)
         bindViews(view)
         setData()
     }

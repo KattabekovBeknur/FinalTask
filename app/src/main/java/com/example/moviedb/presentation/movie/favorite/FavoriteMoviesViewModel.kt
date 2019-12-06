@@ -10,7 +10,7 @@ import com.example.moviedb.extensions.launchSafe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class FavoriteMoviesViewModel( private val movieRepository: MovieRepository): BaseViewModel(){
+class FavoriteMoviesViewModel( private val movieRepository: MovieRepository) : BaseViewModel(){
 
     private val _liveData = MutableLiveData<State>()
     val liveData: LiveData<State>
@@ -34,7 +34,7 @@ class FavoriteMoviesViewModel( private val movieRepository: MovieRepository): Ba
             val result = withContext(Dispatchers.IO) {
                 val response =
                     accountId?.let { accountId ->
-                        sessionId?.let{ sessionId ->
+                        sessionId?.let { sessionId ->
                             movieRepository.getFavoriteMovies(accountId, sessionId, page)
                         }
                     }

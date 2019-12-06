@@ -26,7 +26,6 @@ class MovieListFragment : BaseFragment() {
     private val viewModel: MovieListViewModel by inject()
     private lateinit var rvMovies: RecyclerView
     private lateinit var srlMovies: SwipeRefreshLayout
-
     private var currentPage = PaginationListener.PAGE_START
     private var isLastPage = false
     private var isLoading = false
@@ -36,7 +35,7 @@ class MovieListFragment : BaseFragment() {
         MovieAdapter.ItemClickListener {
         override fun onItemClick(item: MovieData) {
             val bundle = Bundle()
-            bundle.putInt(AppConstants.MOVIE_ID, item.id!!)
+            item.id?.let{bundle.putInt(AppConstants.MOVIE_ID, it)}
             navController.navigate(
                 R.id.action_moviesListFragment_to_movieDetailsFragment,
                 bundle

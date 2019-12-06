@@ -6,7 +6,7 @@ import com.example.moviedb.data.network.MovieApi
 import com.example.moviedb.domain.repository.MovieRepository
 import com.google.gson.JsonObject
 
-class MovieRepositoryImpl(private val movieApi: MovieApi): MovieRepository {
+class MovieRepositoryImpl(private val movieApi: MovieApi) : MovieRepository {
 
     override suspend fun getPopularMovies(page: Int) =
         movieApi.getPopularMovies(page).await().body()
