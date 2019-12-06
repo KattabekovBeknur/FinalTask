@@ -7,7 +7,7 @@ import com.example.moviedb.domain.repository.UserRepository
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class LoginViewModel(private val userRepository: UserRepository): ViewModel() {
+class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _liveData = MutableLiveData<State>()
     val liveData: LiveData<State>
@@ -26,14 +26,14 @@ class LoginViewModel(private val userRepository: UserRepository): ViewModel() {
                 userRepository.createToken()
                 userRepository.login(username, password)
             }
-            val sessionId: String = withContext(Dispatchers.Default) {
-                userRepository.createSession().body()!!.getAsJsonPrimitive("session_id").asString
+            val sessionId: String? = withContext(Dispatchers.Default) {
+                    userRepository.createSession().body()?.getAsJsonPrimitive("session_id")?.asString
             }
             val accountId: Int? = withContext(Dispatchers.IO) {
-                userRepository.getAccountDetails(sessionId)?.id
+                sessionId?.let{userRepository.getAccountDetails(sessionId)?.id}
             }
             _liveData.value = State.HideLoading
-            _liveData.postValue(State.ApiResult(result, sessionId, accountId))
+            _liveData.postValue(sessionId?.let{State.ApiResult(result, sessionId, accountId)})
         }
     }
 
