@@ -3,7 +3,6 @@
     package="com.example.moviedb">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".presentation.App"
         android:allowBackup="true"
@@ -23,6 +22,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.MainActivity"></activity>
+        <service android:name=".presentation.services.MyFirebaseInstanceService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"></action>
+            </intent-filter>
+        </service>
+        <service android:name=".presentation.services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

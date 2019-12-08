@@ -57,12 +57,16 @@ class CinemaMapFragment : BaseFragment(),
     override fun setData() {
         viewModel.liveData.observe(viewLifecycleOwner, Observer { cinemaList ->
             cinemaList.map { cinema ->
-                val currentLatLng = LatLng(cinema.latitude!!, cinema.longitude!!)
+                val currentLatLng = cinema.latitude?.let{lat ->
+                    cinema.longitude?.let{LatLng(cinema.latitude, cinema.longitude)}}
                 map.addMarker(
-                    MarkerOptions()
-                        .position(currentLatLng)
-                        .title(cinema.name)
-                        .alpha(cinema.id!!.toFloat())
+                    currentLatLng?.let {lat->
+                        cinema.id?.let { id->
+                        MarkerOptions()
+                            .position(lat)
+                            .title(cinema.name)
+                            .alpha(id.toFloat())}
+                    }
                 )
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
@@ -76,9 +80,9 @@ class CinemaMapFragment : BaseFragment(),
     }
 
     override fun onMarkerClick(p0: Marker?): Boolean {
-        p0?.id
         val bundle = Bundle()
-        bundle.putInt(AppConstants.CINEMA_ID, p0?.alpha!!.toInt())
+        p0?.alpha?.let { bundle.putInt(AppConstants.CINEMA_ID, p0?.alpha.toInt()) }
+
         navController.navigate(
             R.id.action_cinemaFragment_to_cinemaDetailsFragment,
             bundle

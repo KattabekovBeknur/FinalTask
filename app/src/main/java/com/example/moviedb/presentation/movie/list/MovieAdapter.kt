@@ -13,7 +13,7 @@ import com.example.moviedb.data.models.MovieData
 import com.example.moviedb.utils.AppConstants
 
 
-class MovieAdapter(private val itemClickListener: ItemClickListener): RecyclerView.Adapter<BaseViewHolder>() {
+class MovieAdapter(private val itemClickListener: ItemClickListener) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private val VIEW_TYPE_LOADING = 0
     private val VIEW_TYPE_NORMAL = 1

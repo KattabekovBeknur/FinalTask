@@ -7,7 +7,7 @@ import com.example.moviedb.domain.repository.UserRepository
 import com.google.gson.JsonObject
 import retrofit2.Response
 
-class UserRepositoryImpl(private val movieApi: MovieApi): UserRepository {
+class UserRepositoryImpl(private val movieApi: MovieApi) : UserRepository {
     private var requestToken: String? = null
 
     override suspend fun createToken(): Response<JsonObject> {

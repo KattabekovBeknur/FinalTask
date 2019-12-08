@@ -45,15 +45,15 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     private fun setFavoriteFunc(status:Boolean,which:Int){
-        val accountId = AppPreferences.getAccountId(activity?.applicationContext!!)
-        val sessionId = AppPreferences.getSessionId(activity?.applicationContext!!)
-        movieId?.let {
+        val accountId = activity?.applicationContext?.let{AppPreferences.getAccountId(it)}
+        val sessionId = activity?.applicationContext?.let{AppPreferences.getSessionId(it)}
+        movieId?.let {movie->
             accountId?.let {
                 sessionId?.let {
                     if (which == 1){
-                        viewModel.setFavorite(accountId, movieId!!, sessionId,status)
+                        viewModel.setFavorite(accountId, movie, sessionId,status)
                     }else{
-                        viewModel.getMovieStatus(accountId, movieId!!, sessionId,status)
+                        viewModel.getMovieStatus(accountId, movie, sessionId,status)
                     }
                 }
             }

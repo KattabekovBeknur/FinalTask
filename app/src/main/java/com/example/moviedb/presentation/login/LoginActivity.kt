@@ -19,8 +19,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
         editTextUsername.setText("Beknur")
         editTextPassword.setText("android")
         buttonLogin.setOnClickListener{
@@ -41,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                     progressBar.visibility = View.INVISIBLE
                 }
                 is LoginViewModel.State.ApiResult -> {
-                    if (state.success && state.session_id != "") {
+                    if (state.success && !state.session_id.isNullOrEmpty()) {
                         val intent = Intent(this, MainActivity::class.java)
                         AppPreferences.setAccountId(this, state.account_id)
                         AppPreferences.setSessionId(this, state.session_id)
